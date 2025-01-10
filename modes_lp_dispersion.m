@@ -374,8 +374,6 @@ b1 = []
 % Vous avez compris...
 % 
 % 
-% Détermination des constantes de propagation normalisées pour le quatrième ordre azimutal $l= 3$
-% 
 % 
 % 
 %% 
@@ -430,11 +428,10 @@ b1 = []
 % SAISIR VOTRE CODE ICI
 %% 
 % 
+% Mode LP$_{11}$
+
+% SAISIR VOTRE CODE ICI
 %% 
-% _Continuez pour les modes d'ordres supérieurs..._
-% 
-% 
-% 
 % 
 % Représentation des distributions de champ des modes
 % 
@@ -493,12 +490,66 @@ y = linspace(-2*a,2*a,1000);    % valeurs de y
 % 
 % 
 % 
-%% Dispersion du mode fondamental
+%% Fibre monomode
+% On s'intéresse maintenant à une fibre à saut d'indice de diamètre de cœur 
+% $a=8.2~\mu$m. La gaîne est constituée de silice pure et le cœur est dopé avec 
+% une concentration molaire d'oxyde de germanium de 4.7 % afin d'augmenter son 
+% indice de réfraction.
+% 
+% Une fonction |n_silica.m| permettant de calculer l'indice de réfraction de 
+% la silice en fonction des concentration en dopants (oxyde de germanium et fluor) 
+% vous est fournie.
+% 
+% On travaille à la longueur d'onde de $\lambda =$ 1550 nm.
 % 
 % 
 % 
+% _Vérifier que la fibre est bien monomode à cette longueur d'onde._
+
+% SAISIR VOTRE CODE ICI
+% Distribution du mode fondamental
+% Calculer la distribution transverse du champ du mode LP$_{01}$
+% 
+% On redéfinira :
+
+x = linspace(-2*a,2*a,1001);    % valeurs de x
+y = linspace(-2*a,2*a,1001);    % valeurs de y
+
+[X,Y] = meshgrid(x,y);  % grille de coordonnees cartesiennes
+
+[THETA,RHO] = cart2pol(X,Y); % conversion vers une grille de coordonnees polaires
+% SAISIR VOTRE CODE ICI
+% Aire effective 
 % 
 % 
+% On définit l'aire effective du mode selon
+% 
+% $$A_\mathrm{eff} = \frac{\left(\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\left|\psi\left(x,y\right)\right|^2\mathrm{d}x\mathrm{d}y\right)^2}{\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}\left|\psi\left(x,y\right)\right|^4\mathrm{d}x\mathrm{d}y}$$
+% 
+% Calculer l'aire effective du mode fondamental.
+% 
+% Une fonction |integral_2d_simpson.m| permettant de calculer numériquement 
+% des intégrales doubles vous est fournie.
+
+% SAISIR VOTRE CODE ICI
+%% 
+% 
+% Dispersion matériau
+% La dispersion matériau est définie selon (voir TD)
+% 
+% $$D_M = -\frac{\lambda}{c}\frac{\textrm{d}^2 n_2}{\textrm{d}\lambda^2}$$
+% 
+% Représenter la dispersion matériau de la fibre sur l'intervalle de longueurs 
+% d'onde 1.2 um - 1.7 um.
+
+% SAISIR VOTRE CODE ICI
+% Dispersion totale
+% Calculer et représenter la dispersion totale du mode fondamental en fonction 
+% de la longueur d'onde.
+% 
+% Justifier les étapes de calcul.
+
+% SAISIR VOTRE CODE ICI
 %% Quelques éléments de Matlab et astuces de calcul
 % 
 % Représentation de fonctions définies par morceaux
