@@ -1,16 +1,8 @@
 %% Représentation des modes LP d'une fibre optique à saut d'indice
 % 
 % 
-% <mailto:christophe.peucheret@univ-rennes.fr >
-% 
 % 
 %% 
-% 
-% 
-% 
-% 
-% 
-% 
 % 
 %% Objectifs
 % 
@@ -28,14 +20,20 @@
 % des modes LP$$_{lm}$$, où $l \geq 0$ et $m \geq 1$ sont des entiers.
 % 
 % 
-%% Prise en main : les Live Scripts de Matlab
+%% Prise en main
+% Les Live scripts de Matlab
 % 
 % 
 % Cet exercice utilise la fonctionnalité Live script de Matlab, qui permet de 
 % combiner harmonieusement du texte formaté et du code exécutable, à la manière 
-% des notebooks Jupyter que vous connaissez peut-être déjà en Python. Vous pourrez 
-% trouver plus d'information sur les Live scripts <https://fr.mathworks.com/help/matlab/live-scripts-and-functions.html 
-% ici>.
+% des notebooks Jupyter que vous connaissez peut-être déjà en Python. 
+% 
+% Vous pourrez trouver plus d'information sur les Live scripts en suivant le 
+% lien :
+% 
+% <https://fr.mathworks.com/help/matlab/live-scripts-and-functions.html https://fr.mathworks.com/help/matlab/live-scripts-and-functions.html>
+% 
+% 
 % 
 % Ce problème est constitué d'un unique fichier Live script. Il vous sera demandé 
 % de le compléter avec votre propre code et de discuter et commenter vos résultats 
@@ -55,9 +53,7 @@
 % de Matlab ou exécuter le Live script à nouveau depuis le début.
 % 
 % Vous pouvez aussi effacer les résultats de calcul et les graphes générés par 
-% le Live script (par exemple  right click > Clear all output).
-% 
-% 
+% le Live script (par exemple  |right click > Clear all output|).
 % 
 % 
 % 
@@ -77,10 +73,13 @@
 % doubles. Ainsi **ceci sera formaté en gras** mettra automatiquement le texte 
 % en forme selon *ceci sera formaté en gras*.
 % 
+% Pour d'autres éléments de mise en forme du texte : <https://fr.mathworks.com/help/matlab/matlab_prog/format-live-scripts.html 
+% https://fr.mathworks.com/help/matlab/matlab_prog/format-live-scripts.html>
+% 
 % 
 % 
 % Avant de démarrer l'étude proprement dite, nous allons procéder à un rapide 
-% test de la fonctionnalité des Live Scripts.
+% test de la fonctionnalité des Live scripts.
 % 
 % 
 % 
@@ -88,13 +87,13 @@
 % 
 % Représenter la fonction $y = x^2$ for $x\in \left[-5,5\right]$
 % 
-% Vous pouvez insérer du code Matlab (Insert > Code)
+% Vous pouvez insérer du code Matlab (|Insert > Code|)
 % 
 % 
 
 x = linspace(-5,5,100);
 y = x.^2;
-figure('Name','the figure I am asked to plot')
+figure('Name','the stupid figure I am asked to plot')
 plot(x,y,'b-')
 xlabel('x')
 ylabel('y')
@@ -119,7 +118,7 @@ ylabel('y')
 % 
 % Vous pourrez aussi faire apparaître le graphe en ligne avec le texte (Marge 
 % de droite > |Show outputs inline|), ce qui sera plus aisé afin d'organiser vos 
-% graphiques par la suite et de les faire apparaître dans le bon ordre par rapport 
+% graphiques par la suite et les faire apparaître dans le bon ordre par rapport 
 % à vos blocs de code et autres commentaires.
 % 
 % Vous pouvez maintenant effacer le graphe produit dans cette section qui, avouons-le, 
@@ -131,8 +130,8 @@ ylabel('y')
 % * Exécuter le code présent dans une section (entre deux séparations horizontales) 
 % : |CTRL + ENTER|
 % * Insérer un séparateur de sections : |CTRL + ALT + ENTER|
-% * Alterner la saisie, d'un bloc de texte à un bloc de code, ou l'inverse : 
-% |ALT + ENTER|
+% * Alterner la saisie, d'un bloc de texte avec un bloc de code, ou l'inverse 
+% : |ALT + ENTER|
 %% 
 % 
 % 
@@ -143,12 +142,42 @@ ylabel('y')
 % Il vous appartient de deviner où cette section a été créée.
 % 
 % 
-% 
-% Le texte de cet exercice vous est également fourni (les équations sont plus 
-% jolies...) en complément.
+% Structure de l'archive
 % 
 % 
-%% Quelques rappels
+% Le texte de cet exercice est également disponible dans un dépôt GitHub dont 
+% le lien vous a été communiqué.
+% 
+% Ce dépôt est organisé comme suit :
+%% 
+% * |src| contient des fonctions Matlab qui vous seront utiles pour la partie 
+% de l'exercice concernant les fibres monomodes (calcul de l'indice de réfraction 
+% de la silice, calcul de dérivées par différences finies, calcul d'intégrales 
+% doubles par la méthode de Simpson, etc.). Vous aurez besoin d'utiliser ces fonctions, 
+% décrites (entrées, sorties, etc) dans leurs préambules.
+% * |libs| contient des bibliothèques externes (mises à disposition par leurs 
+% auteurs respectifs, sous licence open source) qui sont utilisées par certaines 
+% fonctions dans |src|. Vous n'avez pas besoin, en principe, de prendre connaissance 
+% du contenu du répertoire |libs|.
+%% 
+% Vous pouvez directement télécharger le dépôt depuis site GitHub (voir ci-dessous) 
+% ou bien, si vous disposez du logiciel Git, le cloner.
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% N'oubliez pas d'ajouter le répertoire de l'archive aux chemins connus de Matlab 
+% (afin que ce dernier puisse localiser les fonctions) : depuis la fenêtre principale 
+% Matlab |Home > Set Path > Add with Subfolders| et pointer vers le répertoire 
+% dans lequel l'archive a été extraite / où le dépôt a été cloné.
+% 
+% 
+% 
+% 
+%% Quelques rappels théoriques
 % 
 % 
 % On considère dans ce qui suit une fibre optique à saut d'indice consistant 
@@ -220,7 +249,7 @@ ylabel('y')
 % 
 % 
 % Pour une fréquence normalisée (c'est-à-dire pour une fibre donnée, totalement 
-% définie par $n_1$, $n_2$ et $a$, et à une longueur d'onde donnée.} $V$ et un 
+% définie par $n_1$, $n_2$ et $a$, et à une longueur d'onde donnée.) $V$ et un 
 % ordre azimutal $l \geq 0$ donnés, la constant de propagation normalisée $b_{lm}$ 
 % du mode LP$$_{lm}$$ est la $$m-$$ème racine de l'équation de dispersion, dans 
 % l'ordre des valeurs de $b$ décroissantes.
@@ -269,7 +298,7 @@ close all
 %% 
 % Cette fibre sera utilisée à la longueur d'onde $\lambda = 1550$ nm.
 % 
-% On peut donc définir les variables Matlab
+% On peut donc définir les variables Matlab :
 
 a = 30e-6;
 % Fibre radius, in m
@@ -302,7 +331,7 @@ Delta = 0.001;
 % 
 % 
 % 
-% On considérera a minima les modes d'ordre azimutal $l = 0, 1, 2$ et $3$.
+% On considérera a minima les modes d'ordre azimutal $l = 0, 1, 2$ (et $3$...)
 % 
 % On effectuera une résolution graphique de l'équation de dispersion (pour chaque 
 % valeur de $l$ considérée) qu'on aura préalablement mise sous une forme $f\left(b\right) 
@@ -370,7 +399,7 @@ b1 = []
 %% 
 % On réutilisera par la suite les éléments de ce vecteur lorsqu'on cherchera 
 % à tracer les modes.
-% Détermination des constantes de propagation normalisées pour l troisième ordre azimutal $l= 2$
+% Détermination des constantes de propagation normalisées pour le troisième ordre azimutal $l= 2$
 % Vous avez compris...
 % 
 % 
@@ -493,12 +522,12 @@ y = linspace(-2*a,2*a,1000);    % valeurs de y
 %% Fibre monomode
 % On s'intéresse maintenant à une fibre à saut d'indice de diamètre de cœur 
 % $a=8.2~\mu$m. La gaîne est constituée de silice pure et le cœur est dopé avec 
-% une concentration molaire d'oxyde de germanium de 4.7 % afin d'augmenter son 
-% indice de réfraction.
+% une concentration molaire de dioxyde de germanium (GeO$$_2$$) de 4.7 % afin 
+% d'augmenter son indice de réfraction.
 % 
 % Une fonction |n_silica.m| permettant de calculer l'indice de réfraction de 
-% la silice en fonction des concentration en dopants (oxyde de germanium et fluor) 
-% vous est fournie.
+% la silice en fonction des concentrations en dopants (dioxyde de germanium et 
+% fluor) vous est fournie.
 % 
 % On travaille à la longueur d'onde de $\lambda =$ 1550 nm.
 % 
@@ -507,6 +536,8 @@ y = linspace(-2*a,2*a,1000);    % valeurs de y
 % _Vérifier que la fibre est bien monomode à cette longueur d'onde._
 
 % SAISIR VOTRE CODE ICI
+%% 
+% 
 % Distribution du mode fondamental
 % Calculer la distribution transverse du champ du mode LP$_{01}$
 % 
@@ -519,6 +550,12 @@ y = linspace(-2*a,2*a,1001);    % valeurs de y
 
 [THETA,RHO] = cart2pol(X,Y); % conversion vers une grille de coordonnees polaires
 % SAISIR VOTRE CODE ICI
+%% 
+% Cette redéfinition est nécessaire afin de pouvoir utiliser par la suite la 
+% fonction |integral_2d_simpson.m| (voir ci-dessous) qui requiert un nombre impair 
+% de valeurs d'abscisses et d'ordonnées.
+% 
+% 
 % Aire effective 
 % 
 % 
@@ -534,22 +571,57 @@ y = linspace(-2*a,2*a,1001);    % valeurs de y
 % SAISIR VOTRE CODE ICI
 %% 
 % 
+% 
+% 
 % Dispersion matériau
 % La dispersion matériau est définie selon (voir TD)
 % 
-% $$D_M = -\frac{\lambda}{c}\frac{\textrm{d}^2 n_2}{\textrm{d}\lambda^2}$$
+% $D_M = -\frac{\lambda}{c}\frac{\textrm{d}^2 n_2}{\textrm{d}\lambda^2}$,
+% 
+% où $$n_2$$ est l'indice de réfraction de la gaîne.
 % 
 % Représenter la dispersion matériau de la fibre sur l'intervalle de longueurs 
-% d'onde 1.2 um - 1.7 um.
+% d'onde 1.2 $$\mu$$m - 1.7 $$\mu$$m.
+% 
+% Une fonction |n_silica.m| permettant de calculer les variations de l'indice 
+% de réfraction de la silice dopée en fonction de la longueur d'onde vous est 
+% fournie.
 
 % SAISIR VOTRE CODE ICI
+%% 
+% 
+% 
+% 
 % Dispersion totale
 % Calculer et représenter la dispersion totale du mode fondamental en fonction 
 % de la longueur d'onde.
 % 
-% Justifier les étapes de calcul.
+% La dispersion totale s'écrit, en fonction de l'indice effectif du mode (voir 
+% TD)
+% 
+% $D = -\frac{\lambda}{c} \frac{\mathrm{d}^2 n_\mathrm{eff}}{\mathrm{d}\lambda^2}$,
+% 
+% ou, en fonction de la dérivée seconde de la constante de propagation,
+% 
+% $D = -\frac{2\pi c}{\lambda^2}\frac{\mathrm{d}^2\beta_2}{\mathrm{d}\omega^2}$.
+% 
+% On rappelle que la constante de propagation s'écrit, en fonction de l'indice 
+% effectif du mode
+% 
+% $\beta\left(\omega\right) = \frac{\omega}{c} n_\mathrm{eff}\left(\omega\right)$.
+% 
+% Il faudra donc déterminer $$n_\mathrm{eff}$$ en fonction de la longueur d'onde, 
+% puis calculer sa dérivée seconde par rapport à $$\lambda$$.
+% 
+% 
 
 % SAISIR VOTRE CODE ICI
+%% 
+% 
+% 
+% On comparera sur le même graphe la dispersion totale et la dispersion matériau.
+% 
+% 
 %% Quelques éléments de Matlab et astuces de calcul
 % 
 % Représentation de fonctions définies par morceaux
